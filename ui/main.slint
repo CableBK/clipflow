@@ -9,5 +9,36 @@ export component MainWindow inherits Window {
 
     in property <[string]> clipboard_items: [];
 
+    VerticalLayout {
+        padding: 16px;
+        spacing: 12px;
 
+        HorizontalLayout {
+            alignment: space-between;
+
+            Text {
+                text: "Clipboard";
+                font-size: 24px;
+                font-weight: 700;
+                color: #202020;
+            }
+
+            Text {
+                text: "Clear all";
+                color: #2563eb;
+                vertical-alignment: center;
+            }
+        }
+
+        LineEdit {
+            placeholder-text: "Search clipboard...";
+        }
+
+        Text {
+            text: "Recent";
+            font-size: 16px;
+            font-weight: 600;
+            color: #202020;
+        }
+    }
 }
