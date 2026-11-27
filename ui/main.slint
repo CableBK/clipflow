@@ -5,7 +5,9 @@ export component MainWindow inherits Window {
     width: 380px;
     height: 560px;
     background: #f3f3f3;
-
+    
+    callback search-changed(string);
+    
     in property <[string]> clipboard_items: [];
 
     VerticalLayout {
