@@ -1,5 +1,5 @@
 
-import { LineEdit } from "std-widgets.slint";
+import { LineEdit, ScrollView } from "std-widgets.slint";
 
 export component MainWindow inherits Window {
     title: "ClipFlow";
@@ -44,52 +44,53 @@ export component MainWindow inherits Window {
             color: #202020;
         }
 
-        // Content: เปลี่ยนตามจำนวนรายการ
-        if root.clipboard_items.length > 0 : ListView {
-            for item in root.clipboard_items: Rectangle {
-                background: #ffffff;
-                border-radius: 8px;
-                height: 75px;
+        if root.clipboard_items.length > 0: ScrollView {
+            VerticalLayout {
+                spacing: 8px;
 
-                VerticalLayout {
-                    padding: 12px;
-                    alignment: center;
+                for item in root.clipboard_items: Rectangle {
+                    background: #ffffff;
+                    border-radius: 8px;
+                    height: 75px;
 
-                    Text {
-                        text: item;
-                        color: #202020;
-                        font-size: 14px;
-                        wrap: word-wrap;
+                    VerticalLayout {
+                        padding: 12px;
+                        alignment: center;
+
+                        Text {
+                            text: item;
+                            color: #202020;
+                            font-size: 14px;
+                            wrap: word-wrap;
+                        }
                     }
                 }
             }
-        } else : Rectangle {
-            background: transparent;
+        }
 
-            VerticalLayout {
-                alignment: center;
-                spacing: 8px;
+        if root.clipboard_items.length == 0: VerticalLayout {
+            alignment: center;
+            spacing: 8px;
 
-                Text {
-                    text: "📋";
-                    font-size: 36px;
-                    horizontal-alignment: center;
-                }
+            Text {
+                text: "📋";
+                font-size: 36px;
+                horizontal-alignment: center;
+            }
 
-                Text {
-                    text: "No clipboard history";
-                    color: #444444;
-                    font-size: 16px;
-                    font-weight: 600;
-                    horizontal-alignment: center;
-                }
+            Text {
+                text: "No clipboard history";
+                color: #444444;
+                font-size: 16px;
+                font-weight: 600;
+                horizontal-alignment: center;
+            }
 
-                Text {
-                    text: "Copy something and it will appear here.";
-                    color: #888888;
-                    font-size: 12px;
-                    horizontal-alignment: center;
-                }
+            Text {
+                text: "Copy something and it will appear here.";
+                color: #888888;
+                font-size: 12px;
+                horizontal-alignment: center;
             }
         }
     }
