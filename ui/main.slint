@@ -1,13 +1,13 @@
-import { LineEdit, ListView} from "std-widgets.slint";
+import { LineEdit, ListView } from "std-widgets.slint";
 
 export component MainWindow inherits Window {
     title: "ClipFlow";
     width: 380px;
     height: 560px;
     background: #f3f3f3;
-    
+
     callback search-changed(string);
-    
+
     in property <[string]> clipboard_items: [];
 
     VerticalLayout {
@@ -33,6 +33,10 @@ export component MainWindow inherits Window {
 
         LineEdit {
             placeholder-text: "Search clipboard...";
+
+            edited(text) => {
+                root.search-changed(text);
+            }
         }
 
         Text {
