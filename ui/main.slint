@@ -1,5 +1,4 @@
-
-import { LineEdit, ScrollView } from "std-widgets.slint";
+import { LineEdit, ListView} from "std-widgets.slint";
 
 export component MainWindow inherits Window {
     title: "ClipFlow";
@@ -13,7 +12,6 @@ export component MainWindow inherits Window {
         padding: 16px;
         spacing: 12px;
 
-        // Header: อยู่ด้านบนเสมอ
         HorizontalLayout {
             alignment: space-between;
 
@@ -31,12 +29,10 @@ export component MainWindow inherits Window {
             }
         }
 
-        // Search: อยู่ด้านบนเสมอ
         LineEdit {
             placeholder-text: "Search clipboard...";
         }
 
-        // Section title
         Text {
             text: "Recent";
             font-size: 16px;
@@ -44,25 +40,21 @@ export component MainWindow inherits Window {
             color: #202020;
         }
 
-        if root.clipboard_items.length > 0: ScrollView {
-            VerticalLayout {
-                spacing: 8px;
+        if root.clipboard_items.length > 0: ListView {
+            for item in root.clipboard_items: Rectangle {
+                background: #ffffff;
+                border-radius: 8px;
+                height: 75px;
 
-                for item in root.clipboard_items: Rectangle {
-                    background: #ffffff;
-                    border-radius: 8px;
-                    height: 75px;
+                VerticalLayout {
+                    padding: 12px;
+                    alignment: center;
 
-                    VerticalLayout {
-                        padding: 12px;
-                        alignment: center;
-
-                        Text {
-                            text: item;
-                            color: #202020;
-                            font-size: 14px;
-                            wrap: word-wrap;
-                        }
+                    Text {
+                        text: item;
+                        color: #202020;
+                        font-size: 14px;
+                        wrap: word-wrap;
                     }
                 }
             }
