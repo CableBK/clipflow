@@ -40,5 +40,24 @@ export component MainWindow inherits Window {
             font-weight: 600;
             color: #202020;
         }
+
+        for item in root.clipboard_items: Rectangle {
+            background: #ffffff;
+            border-radius: 8px;
+            height: 75px;
+
+            VerticalLayout {
+                padding: 12px;
+                alignment: center;
+
+                Text {
+                    text: item;
+                    color: #202020;
+                    font-size: 14px;
+                    wrap: word-wrap;
+                    overflow: elide;
+                }
+            }
+        }
     }
 }
