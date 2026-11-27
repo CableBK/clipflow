@@ -1,7 +1,7 @@
 slint::include_modules!();
 
-fn main() -> Result<(), Box<dyn std::error::Error>> {
-    let app = slint::load_module!("main.slint")?;
-    app.run()?;
-    Ok(())
+fn main() -> Result<(), slint::PlatformError> {
+    let main_window = MainWindow::new()?;
+    
+    app.run()
 }
