@@ -13,6 +13,7 @@ export component MainWindow inherits Window {
         padding: 16px;
         spacing: 12px;
 
+        // Header: อยู่ด้านบนเสมอ
         HorizontalLayout {
             alignment: space-between;
 
@@ -30,10 +31,12 @@ export component MainWindow inherits Window {
             }
         }
 
+        // Search: อยู่ด้านบนเสมอ
         LineEdit {
             placeholder-text: "Search clipboard...";
         }
 
+        // Section title
         Text {
             text: "Recent";
             font-size: 16px;
@@ -41,21 +44,51 @@ export component MainWindow inherits Window {
             color: #202020;
         }
 
-        for item in root.clipboard_items: Rectangle {
-            background: #ffffff;
-            border-radius: 8px;
-            height: 75px;
+        // Content: เปลี่ยนตามจำนวนรายการ
+        if root.clipboard_items.length > 0 : ListView {
+            for item in root.clipboard_items: Rectangle {
+                background: #ffffff;
+                border-radius: 8px;
+                height: 75px;
+
+                VerticalLayout {
+                    padding: 12px;
+                    alignment: center;
+
+                    Text {
+                        text: item;
+                        color: #202020;
+                        font-size: 14px;
+                        wrap: word-wrap;
+                    }
+                }
+            }
+        } else : Rectangle {
+            background: transparent;
 
             VerticalLayout {
-                padding: 12px;
                 alignment: center;
+                spacing: 8px;
 
                 Text {
-                    text: item;
-                    color: #202020;
-                    font-size: 14px;
-                    wrap: word-wrap;
-                    overflow: elide;
+                    text: "📋";
+                    font-size: 36px;
+                    horizontal-alignment: center;
+                }
+
+                Text {
+                    text: "No clipboard history";
+                    color: #444444;
+                    font-size: 16px;
+                    font-weight: 600;
+                    horizontal-alignment: center;
+                }
+
+                Text {
+                    text: "Copy something and it will appear here.";
+                    color: #888888;
+                    font-size: 12px;
+                    horizontal-alignment: center;
                 }
             }
         }
