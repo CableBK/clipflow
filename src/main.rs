@@ -1,5 +1,7 @@
 slint::include_modules!();
 
-fn main() {
-    println!("Hello, world!");
+fn main() -> Result<(), Box<dyn std::error::Error>> {
+    let app = slint::load_module!("main.slint")?;
+    app.run()?;
+    Ok(())
 }
