@@ -10,5 +10,12 @@ fn main() -> Result<(), slint::PlatformError> {
         ModelRc::new(VecModel::from(items))
     );
 
+    let items = vec![
+        SharedString::from("Hello, welcome to ClipFlow!"),
+        SharedString::from("Cable"),
+        SharedString::from("https://github.com/"),
+        SharedString::from("Hello Rust Programming"),
+    ];
+
     app.run()
 }
